@@ -1,0 +1,10 @@
+{
+  "name": "p44-types",
+  "version": "1.0.0",
+  "description": "Type definitions for p44 format",
+  "types": "./index.d.ts",
+  "scripts": {},
+  "dependencies": {
+    "typescript": "^5.4.3"
+  }
+}
