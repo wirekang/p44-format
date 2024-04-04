@@ -1,4 +1,4 @@
-export type Language = "en" | "ko";
+export type Language = string;
 
 export type I18nText = Record<Language, string | null>;
 
@@ -6,51 +6,59 @@ export type TagTarget = "article" | "paragraph";
 
 export type Priority = number | null;
 
-export type TagId = string;
+export type TagId = number;
+export type TagCategoryId = number;
 
 export type Tag = {
   id: TagId;
+  categoryId: TagCategoryId;
   label: I18nText;
   description: I18nText | null;
   priority: Priority;
 };
 
-export type TagGroupId = string;
-
-export type TagGroup = {
-  id: TagGroupId;
+export type TagCategory = {
+  id: TagCategoryId;
   label: I18nText;
   description: I18nText;
   target: TagTarget[];
   priority: Priority;
-  tags: TagId[];
 };
 
-export type Tags = [TagGroupId, TagId[]][];
+export type ParagraphId = number;
+export type ArticleId = number;
+export type ParagraphTagId = number;
 
-export type ParagraphId = string;
+export type ParagraphTag = {
+  id: ParagraphTagId;
+  paragraphId: ParagraphId;
+  tagId: TagId;
+};
+
+export type UnixSeconds = number;
 
 export type Paragraph = {
   id: ParagraphId;
-  tags: Tags;
+  articleId: ArticleId;
   text: I18nText;
+  draft: boolean;
+  createdAt: UnixSeconds;
+  updatedAt: UnixSeconds;
+};
+
+export type ArticleTagId = number;
+
+export type ArticleTag = {
+  id: ArticleTagId;
+  articleId: ArticleId;
+  tagId: TagId;
 };
 
 export type Article = {
-  tags: Tags;
+  id: ArticleId;
   title: I18nText;
-  paragraphs: ParagraphId[];
   priority: Priority;
   draft: boolean;
-};
-
-export type FlatTags = [TagGroup, Tag[]][];
-
-export type FlatParagraph = Omit<Paragraph, "tags"> & {
-  tags: FlatTags;
-};
-
-export type FlatArticle = Omit<Article, "tags" | "paragraphs"> & {
-  tags: FlatTags;
-  paragraphs: FlatParagraph[];
+  createdAt: UnixSeconds;
+  updatedAt: UnixSeconds;
 };
