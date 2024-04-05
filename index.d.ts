@@ -1,10 +1,10 @@
 export type Language = string;
 
-export type I18nText = Record<Language, string | null>;
+export type I18nText = Record<Language, string>;
 
 export type TagTarget = "article" | "paragraph";
 
-export type Priority = number | null;
+export type Priority = number;
 
 export type TagId = number;
 export type TagCategoryId = number;
@@ -13,7 +13,7 @@ export type Tag = {
   id: TagId;
   categoryId: TagCategoryId;
   label: I18nText;
-  description: I18nText | null;
+  description: I18nText;
   priority: Priority;
 };
 

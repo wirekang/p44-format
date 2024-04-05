@@ -1,6 +1,6 @@
 {
   "name": "p44-types",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Type definitions for p44 format",
   "types": "./index.d.ts",
   "scripts": {},
